@@ -1,0 +1,10 @@
+---
+- name: Set Hostname with hostname command
+  hostname:
+    name: {{ inventory_hostname }}
+  notify:
+    - restart hostname
+    - restart systemd-logind
+
+- name: change hosts
+  template: src=hosts.j2 dest=/etc/hosts
